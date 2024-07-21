@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
-import { CameraView, Camera } from "expo-camera/next";
+import { CameraView, Camera } from "expo-camera";
 import * as clipboard from "expo-clipboard";
 import * as haptics from "expo-haptics";
-import { FontAwesome5, Entypo } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { useFonts, Poppins_500Medium } from "@expo-google-fonts/poppins";
 
@@ -11,8 +11,6 @@ export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
   const [scannedData, setScannedData] = useState(null);
-
-  console.log("scanned", scanned);
 
   async function requestCameraPermissions() {
     const { status } = await Camera.requestCameraPermissionsAsync();
