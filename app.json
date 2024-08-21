@@ -26,6 +26,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "36b480e8-7fa0-49b3-8071-50177f83252f"
+      }
+    },
+    "owner": "luizfelipemacedoc"
   }
 }
