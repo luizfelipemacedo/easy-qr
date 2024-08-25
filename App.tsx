@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
-import { CameraView, Camera } from "expo-camera";
-import * as clipboard from "expo-clipboard";
+
 import * as haptics from "expo-haptics";
-import { FontAwesome5 } from "@expo/vector-icons";
-import AntDesign from "@expo/vector-icons/AntDesign";
+import * as clipboard from "expo-clipboard";
+import * as webBrowser from "expo-web-browser";
+import { CameraView, Camera } from "expo-camera";
+import { FontAwesome5, Feather, AntDesign } from "@expo/vector-icons";
 import { useFonts, Poppins_500Medium } from "@expo-google-fonts/poppins";
 
 export default function App() {
@@ -118,7 +119,7 @@ function ResultCard({
 
 function IconsSection({ scannedData }: { scannedData: string | null }) {
   return (
-    <View className="flex-row ml-auto justify-between">
+    <View className="flex-row mt-2 gap-3 justify-end">
       <TouchableOpacity
         disabled={scannedData === null}
         onPress={async () => {
@@ -128,6 +129,19 @@ function IconsSection({ scannedData }: { scannedData: string | null }) {
       >
         <FontAwesome5
           name="copy"
+          size={24}
+          color={scannedData ? "white" : "gray"}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity
+        disabled={scannedData === null}
+        onPress={async () => {
+          await webBrowser.openBrowserAsync(scannedData);
+          haptics.notificationAsync(haptics.NotificationFeedbackType.Success);
+        }}
+      >
+        <Feather
+          name="external-link"
           size={24}
           color={scannedData ? "white" : "gray"}
         />
